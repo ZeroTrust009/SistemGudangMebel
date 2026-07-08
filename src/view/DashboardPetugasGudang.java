@@ -8,14 +8,14 @@ package view;
  *
  * @author taqim
  */
-public class DashboardPG extends javax.swing.JFrame {
+public class DashboardPetugasGudang extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DashboardPG.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DashboardPetugasGudang.class.getName());
 
     /**
      * Creates new form Dashboard
      */
-    public DashboardPG() {
+    public DashboardPetugasGudang() {
         initComponents();
     }
 
@@ -38,7 +38,8 @@ public class DashboardPG extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblJudul.setText("DASHBOARD SISTEM GUDANG");
+        lblJudul.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblJudul.setText("DASHBOARD PETUGAS GUDANG");
 
         lblWelcome.setText("Selamat Datang");
 
@@ -72,12 +73,12 @@ public class DashboardPG extends javax.swing.JFrame {
                             .addComponent(btnLaporan)
                             .addComponent(btnBarangMasuk)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(lblJudul))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(116, 116, 116)
-                        .addComponent(btnLogout)))
-                .addContainerGap(107, Short.MAX_VALUE))
+                        .addComponent(btnLogout))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(lblJudul)))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +141,7 @@ public class DashboardPG extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new DashboardPG().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new DashboardPetugasGudang().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
