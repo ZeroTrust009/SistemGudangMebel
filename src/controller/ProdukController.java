@@ -85,7 +85,24 @@ public class ProdukController extends BaseController implements CRUD<Produk> {
 
     @Override
     public void hapus(String id) {
-        throw new UnsupportedOperationException("Belum diimplementasikan.");
+
+        String sql = "DELETE FROM produk WHERE idPerabot = ?";
+
+        try {
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, id);
+
+            int hasil = ps.executeUpdate();
+
+            System.out.println("Jumlah data terhapus = " + hasil);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
     }
 
     @Override

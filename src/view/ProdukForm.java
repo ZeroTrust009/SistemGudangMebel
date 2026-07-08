@@ -62,21 +62,23 @@ public class ProdukForm extends javax.swing.JFrame {
         tblProduk.setModel(model);
 
     }
+
     private void clearForm() {
 
-    txtIdPerabot.setText("");
-    txtNamaPerabot.setText("");
-    txtJenisPerabot.setText("");
-    txtStatusPerabot.setText("");
-    txtStok.setText("");
-    txtHarga.setText("");
-    txtZona.setText("");
-    txtNomorRak.setText("");
-    txtPosisiRak.setText("");
+        txtIdPerabot.setText("");
+        txtNamaPerabot.setText("");
+        txtJenisPerabot.setText("");
+        txtStatusPerabot.setText("");
+        txtStok.setText("");
+        txtHarga.setText("");
+        txtZona.setText("");
+        txtNomorRak.setText("");
+        txtPosisiRak.setText("");
 
-    txtIdPerabot.requestFocus();
+        txtIdPerabot.requestFocus();
 
-}
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -175,6 +177,7 @@ public class ProdukForm extends javax.swing.JFrame {
         btnUbah.addActionListener(this::btnUbahActionPerformed);
 
         btnHapus.setText("Hapus");
+        btnHapus.addActionListener(this::btnHapusActionPerformed);
 
         btnCari.setText("Cari");
 
@@ -384,32 +387,32 @@ public class ProdukForm extends javax.swing.JFrame {
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         try {
 
-        Produk produk = new Produk();
+            Produk produk = new Produk();
 
-        produk.setIdPerabot(txtIdPerabot.getText());
-        produk.setNamaPerabot(txtNamaPerabot.getText());
-        produk.setJenisPerabot(txtJenisPerabot.getText());
-        produk.setStatusPerabot(txtStatusPerabot.getText());
-        produk.setStok(Integer.parseInt(txtStok.getText()));
-        produk.setHarga(Double.parseDouble(txtHarga.getText()));
-        produk.setZona(txtZona.getText());
-        produk.setNomorRak(txtNomorRak.getText());
-        produk.setPosisiRak(txtPosisiRak.getText());
+            produk.setIdPerabot(txtIdPerabot.getText());
+            produk.setNamaPerabot(txtNamaPerabot.getText());
+            produk.setJenisPerabot(txtJenisPerabot.getText());
+            produk.setStatusPerabot(txtStatusPerabot.getText());
+            produk.setStok(Integer.parseInt(txtStok.getText()));
+            produk.setHarga(Double.parseDouble(txtHarga.getText()));
+            produk.setZona(txtZona.getText());
+            produk.setNomorRak(txtNomorRak.getText());
+            produk.setPosisiRak(txtPosisiRak.getText());
 
-        ProdukController controller = new ProdukController();
-        controller.ubah(produk);
+            ProdukController controller = new ProdukController();
+            controller.ubah(produk);
 
-        JOptionPane.showMessageDialog(this, "Data berhasil diubah!");
+            JOptionPane.showMessageDialog(this, "Data berhasil diubah!");
 
-        clearForm();
-        loadTable();
+            clearForm();
+            loadTable();
 
-    } catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
 
-        JOptionPane.showMessageDialog(this,
-                "Stok dan Harga harus berupa angka!");
+            JOptionPane.showMessageDialog(this,
+                    "Stok dan Harga harus berupa angka!");
 
-    }
+        }
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -419,16 +422,45 @@ public class ProdukForm extends javax.swing.JFrame {
     private void tblProdukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdukMouseClicked
         int baris = tblProduk.getSelectedRow();
 
-    txtIdPerabot.setText(tblProduk.getValueAt(baris, 0).toString());
-    txtNamaPerabot.setText(tblProduk.getValueAt(baris, 1).toString());
-    txtJenisPerabot.setText(tblProduk.getValueAt(baris, 2).toString());
-    txtStatusPerabot.setText(tblProduk.getValueAt(baris, 3).toString());
-    txtStok.setText(tblProduk.getValueAt(baris, 4).toString());
-    txtHarga.setText(tblProduk.getValueAt(baris, 5).toString());
-    txtZona.setText(tblProduk.getValueAt(baris, 6).toString());
-    txtNomorRak.setText(tblProduk.getValueAt(baris, 7).toString());
-    txtPosisiRak.setText(tblProduk.getValueAt(baris, 8).toString());
+        txtIdPerabot.setText(tblProduk.getValueAt(baris, 0).toString());
+        txtNamaPerabot.setText(tblProduk.getValueAt(baris, 1).toString());
+        txtJenisPerabot.setText(tblProduk.getValueAt(baris, 2).toString());
+        txtStatusPerabot.setText(tblProduk.getValueAt(baris, 3).toString());
+        txtStok.setText(tblProduk.getValueAt(baris, 4).toString());
+        txtHarga.setText(tblProduk.getValueAt(baris, 5).toString());
+        txtZona.setText(tblProduk.getValueAt(baris, 6).toString());
+        txtNomorRak.setText(tblProduk.getValueAt(baris, 7).toString());
+        txtPosisiRak.setText(tblProduk.getValueAt(baris, 8).toString());
     }//GEN-LAST:event_tblProdukMouseClicked
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        if (txtIdPerabot.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Pilih data yang akan dihapus!");
+            return;
+        }
+
+        int konfirmasi = JOptionPane.showConfirmDialog(
+                this,
+                "Apakah Anda yakin ingin menghapus data ini?",
+                "Konfirmasi Hapus",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (konfirmasi == JOptionPane.YES_OPTION) {
+
+            ProdukController controller = new ProdukController();
+            controller.hapus(txtIdPerabot.getText());
+
+            JOptionPane.showMessageDialog(this,
+                    "Data berhasil dihapus!");
+
+            clearForm();
+            loadTable();
+
+        }
+
+    }//GEN-LAST:event_btnHapusActionPerformed
 
     /**
      * @param args the command line arguments
