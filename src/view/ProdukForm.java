@@ -382,7 +382,34 @@ public class ProdukForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
-        // TODO add your handling code here:
+        try {
+
+        Produk produk = new Produk();
+
+        produk.setIdPerabot(txtIdPerabot.getText());
+        produk.setNamaPerabot(txtNamaPerabot.getText());
+        produk.setJenisPerabot(txtJenisPerabot.getText());
+        produk.setStatusPerabot(txtStatusPerabot.getText());
+        produk.setStok(Integer.parseInt(txtStok.getText()));
+        produk.setHarga(Double.parseDouble(txtHarga.getText()));
+        produk.setZona(txtZona.getText());
+        produk.setNomorRak(txtNomorRak.getText());
+        produk.setPosisiRak(txtPosisiRak.getText());
+
+        ProdukController controller = new ProdukController();
+        controller.ubah(produk);
+
+        JOptionPane.showMessageDialog(this, "Data berhasil diubah!");
+
+        clearForm();
+        loadTable();
+
+    } catch (NumberFormatException e) {
+
+        JOptionPane.showMessageDialog(this,
+                "Stok dan Harga harus berupa angka!");
+
+    }
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed

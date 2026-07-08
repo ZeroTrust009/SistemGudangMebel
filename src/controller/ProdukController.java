@@ -47,7 +47,40 @@ public class ProdukController extends BaseController implements CRUD<Produk> {
 
     @Override
     public void ubah(Produk data) {
-        throw new UnsupportedOperationException("Belum diimplementasikan.");
+
+        String sql = "UPDATE produk SET "
+                + "NamaPerabot=?, "
+                + "JenisPerabot=?, "
+                + "StatusPerabot=?, "
+                + "stok=?, "
+                + "harga=?, "
+                + "zona=?, "
+                + "nomor_rak=?, "
+                + "posisi_rak=? "
+                + "WHERE idPerabot=?";
+
+        try {
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, data.getNamaPerabot());
+            ps.setString(2, data.getJenisPerabot());
+            ps.setString(3, data.getStatusPerabot());
+            ps.setInt(4, data.getStok());
+            ps.setDouble(5, data.getHarga());
+            ps.setString(6, data.getZona());
+            ps.setString(7, data.getNomorRak());
+            ps.setString(8, data.getPosisiRak());
+            ps.setString(9, data.getIdPerabot());
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+
+            System.out.println("Gagal mengubah data : " + e.getMessage());
+
+        }
+
     }
 
     @Override
